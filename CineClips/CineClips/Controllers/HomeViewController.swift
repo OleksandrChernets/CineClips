@@ -181,6 +181,4 @@ extension HomeViewController: CollectionTableViewCellDelegate {
         vc.viewModel.movie = movie
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
 }
