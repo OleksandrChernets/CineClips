@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 enum Sections: Int {
     case TrendingMovies = 0
@@ -19,52 +20,58 @@ enum Sections: Int {
 
 class HomeViewController: UIViewController {
     
-    let sectionTitle : [String] = ["Trending Movies",
-                                   "Trending TV",
-                                   "Popular Movies",
-                                   "Popular TV",
-                                   "Upcoming",
-                                   "Top Rated"]
     var titles: [Movie] = [Movie]()
+    @IBOutlet weak var homeTableView: UITableView!
+    @IBOutlet weak var mainImageView: UIImageView!
+    @IBOutlet weak var movieLabel: UILabel!
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var mainMovieAverage: UILabel!
+    @IBOutlet weak var releaseDate: UILabel!
     private var randomMovie: Movie?
     
-    @IBOutlet weak var homeTableView: UITableView!
-    @IBOutlet weak var mainView: UIView!
-    @IBOutlet weak var mainImageView: UIImageView! {
-        didSet {
-            mainImageView.image = UIImage(named: "player")
-            mainImageView.alpha = 0.7
-            let gradientLayer = CAGradientLayer()
-            gradientLayer.frame = mainImageView.bounds
-            gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-            gradientLayer.startPoint = CGPoint(x: 0.5, y: 1)
-            gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.5)
-            
-            mainImageView.layer.addSublayer(gradientLayer)
-            mainImageView.layer.mask = gradientLayer
-        }
-    }
+    
+    let sectionTitle: [String] = ["Trending Movies", "Trending TV", "Popular Movies", "Popular TV", "Upcoming", "Top Rated"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = .white
-
+        configureMainImage()
+        configureImageUI()
     }
     
     private func configureMainImage() {
-        APICaller.shared.getTrendingMovies { result in
+        APICaller.shared.getUpcoming { [weak self] result in
             switch result {
             case .success(let movies):
-                self.randomMovie = movies.randomElement()
+                DispatchQueue.main.async {
+                    let selectedMovie = movies.randomElement()
+                    self?.randomMovie = selectedMovie
+                    guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(selectedMovie?.poster_path ?? "")")
+                    else {
+                        return
+                    }
+                    self?.mainImageView.sd_setImage(with: url)
+                    self?.releaseDate.text = selectedMovie?.release_date ?? ""
+                    self?.movieLabel.text = selectedMovie?.original_name ?? selectedMovie?.original_title ?? ""
+                    self?.mainMovieAverage.text = "\(selectedMovie?.vote_average ?? 7.5) (\(selectedMovie?.vote_count ?? 130) reviews)"
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
-    private func configure(with: MediaResponse) {
-        //
+    private func configureImageUI() {
+        mainImageView.alpha = 0.7
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = mainImageView.bounds
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 1)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.5)
+        mainImageView.layer.addSublayer(gradientLayer)
+        mainImageView.layer.mask = gradientLayer
     }
 }
-
 
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
