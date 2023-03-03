@@ -20,7 +20,7 @@ enum Sections: Int {
 
 class HomeViewController: UIViewController {
     
-    var titles: [Movie] = [Movie]()
+    var movies: [Movie] = [Movie]()
     @IBOutlet weak var homeTableView: UITableView!
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var movieLabel: UILabel!
