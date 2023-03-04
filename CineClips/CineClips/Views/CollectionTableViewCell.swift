@@ -13,7 +13,7 @@ protocol CollectionTableViewCellDelegate: AnyObject {
 
 class CollectionTableViewCell: UITableViewCell {
     
-    private var titles: [Movie] = [Movie]()
+    private var movies: [Movie] = [Movie]()
     weak var delegate: CollectionTableViewCellDelegate?
 
     @IBOutlet weak var collectionView: UICollectionView! {
@@ -24,7 +24,7 @@ class CollectionTableViewCell: UITableViewCell {
     }
     
     public func configure(with titles: [Movie]) {
-        self.titles = titles
+        self.movies = titles
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
             
@@ -34,7 +34,7 @@ class CollectionTableViewCell: UITableViewCell {
 
 extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        titles.count
+        movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -42,8 +42,8 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
             return UICollectionViewCell()
         }
         
-        guard let model = titles[indexPath.row].poster_path ?? titles[indexPath.row].backdrop_path,
-              let rate = titles[indexPath.row].vote_average
+        guard let model = movies[indexPath.row].poster_path ?? movies[indexPath.row].backdrop_path,
+              let rate = movies[indexPath.row].vote_average
         else {
             return UICollectionViewCell()
         }
@@ -56,7 +56,7 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let itm = titles[indexPath.row]
+        let itm = movies[indexPath.row]
         delegate?.tableViewCellDelegate(movie: itm)
     } 
     

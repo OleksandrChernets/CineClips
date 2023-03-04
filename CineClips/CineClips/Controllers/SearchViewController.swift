@@ -24,8 +24,6 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
         fetchDiscoverMovies()
         view.backgroundColor = .systemBackground
         searchBar.searchResultsUpdater = self

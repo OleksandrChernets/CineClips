@@ -10,7 +10,6 @@ import SDWebImage
 
 class GenreCollectionViewCell: UICollectionViewCell {
   
-    private var titles: [Movie] = [Movie]()
     
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var averageLabel: UILabel!

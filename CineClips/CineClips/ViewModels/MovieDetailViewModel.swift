@@ -9,8 +9,15 @@ import UIKit
 
 class MovieDetailViewModel {
     
-    var movie: Movie?
+    var movie: Movie? 
     var trailerId: String?
+    
+    func saveMovieToRealm(movie: Movie?) {
+        guard let movie = movie else {
+            return
+        }
+        MovieDataManager.shared.saveMovie(movie: movie)
+    }
     
     func getMovieTrailer(completion: @escaping () -> ()) {
         APICaller.shared.getMovieTrailer(with: String(movie?.id ?? 0)) { trailer in
@@ -27,9 +34,10 @@ class MovieDetailViewModel {
     
     func configureUI(title: UILabel, description: UILabel, dateLabel: UILabel, voteCount: UILabel) {
         title.text = movie?.original_title ?? movie?.original_name
-        description.text = movie?.overview 
+        description.text = movie?.overview
         dateLabel.text = movie?.release_date ?? movie?.first_air_date
         voteCount.text = "\(movie?.vote_average ?? 0) (\(movie?.vote_count ?? 0) reviews)"
         
     }
+ 
 }

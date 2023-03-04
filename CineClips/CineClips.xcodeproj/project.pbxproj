@@ -9,8 +9,12 @@
 /* Begin PBXBuildFile section */
 		5E04BA2B29A16A300096C322 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04BA2A29A16A300096C322 /* DetailViewController.swift */; };
 		5E0B468529744EDE00412F1D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B468429744EDE00412F1D /* HomeViewController.swift */; };
-		5E0B468729744EFB00412F1D /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B468629744EFB00412F1D /* FavouriteViewController.swift */; };
+		5E0B468729744EFB00412F1D /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B468629744EFB00412F1D /* WatchListViewController.swift */; };
 		5E0B468929744F0D00412F1D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B468829744F0D00412F1D /* SearchViewController.swift */; };
+		5E1C82E129B230B8007BCA77 /* RealmModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1C82E029B230B8007BCA77 /* RealmModels.swift */; };
+		5E1C82E329B230F5007BCA77 /* RealmDataMenager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1C82E229B230F5007BCA77 /* RealmDataMenager.swift */; };
+		5E1C82E529B2756A007BCA77 /* WatchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1C82E429B2756A007BCA77 /* WatchListViewModel.swift */; };
+		5E1C82E729B27B17007BCA77 /* WatchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1C82E629B27B16007BCA77 /* WatchListTableViewCell.swift */; };
 		5E24F39D2991302F0062EBB5 /* GenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24F39C2991302F0062EBB5 /* GenreCollectionViewCell.swift */; };
 		5E2A734329A7CF5E008EB8DB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A734229A7CF5E008EB8DB /* NetworkService.swift */; };
 		5E45E69329918A360090726B /* MovieModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E45E69229918A360090726B /* MovieModels.swift */; };
@@ -39,8 +43,12 @@
 		0E5EABAD61B2740F6A67C5F5 /* Pods-CineClips.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineClips.release.xcconfig"; path = "Target Support Files/Pods-CineClips/Pods-CineClips.release.xcconfig"; sourceTree = "<group>"; };
 		5E04BA2A29A16A300096C322 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5E0B468429744EDE00412F1D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		5E0B468629744EFB00412F1D /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		5E0B468629744EFB00412F1D /* WatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewController.swift; sourceTree = "<group>"; };
 		5E0B468829744F0D00412F1D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		5E1C82E029B230B8007BCA77 /* RealmModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModels.swift; sourceTree = "<group>"; };
+		5E1C82E229B230F5007BCA77 /* RealmDataMenager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataMenager.swift; sourceTree = "<group>"; };
+		5E1C82E429B2756A007BCA77 /* WatchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListViewModel.swift; sourceTree = "<group>"; };
+		5E1C82E629B27B16007BCA77 /* WatchListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListTableViewCell.swift; sourceTree = "<group>"; };
 		5E24F39C2991302F0062EBB5 /* GenreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCell.swift; sourceTree = "<group>"; };
 		5E2A734229A7CF5E008EB8DB /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5E45E69229918A360090726B /* MovieModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModels.swift; sourceTree = "<group>"; };
@@ -93,11 +101,20 @@
 			children = (
 				5E0B468429744EDE00412F1D /* HomeViewController.swift */,
 				5E0B468829744F0D00412F1D /* SearchViewController.swift */,
-				5E0B468629744EFB00412F1D /* FavouriteViewController.swift */,
 				5E04BA2A29A16A300096C322 /* DetailViewController.swift */,
+				5E0B468629744EFB00412F1D /* WatchListViewController.swift */,
 				5E927810297320F3004020D6 /* MainTabBarViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5E1C82DF29B23092007BCA77 /* DataMenager */ = {
+			isa = PBXGroup;
+			children = (
+				5E1C82E029B230B8007BCA77 /* RealmModels.swift */,
+				5E1C82E229B230F5007BCA77 /* RealmDataMenager.swift */,
+			);
+			path = DataMenager;
 			sourceTree = "<group>";
 		};
 		5E4CF6882987E15E006654F8 /* Models */ = {
@@ -117,6 +134,7 @@
 				5E24F39C2991302F0062EBB5 /* GenreCollectionViewCell.swift */,
 				5EBA82612992E10F004D0F64 /* CollectionTableViewCell.swift */,
 				5EF0353F29A0F1D2001AE0C7 /* SearchCollectionViewCell.swift */,
+				5E1C82E629B27B16007BCA77 /* WatchListTableViewCell.swift */,
 				5E4CF6972987FC62006654F8 /* AuthenticationViews.swift */,
 				5E927812297320F3004020D6 /* Main.storyboard */,
 				5E927817297320F4004020D6 /* LaunchScreen.storyboard */,
@@ -130,6 +148,7 @@
 				5E4CF6912987E570006654F8 /* AuthenticationViewModel.swift */,
 				5E7B6D1B299FA3C8000DDB88 /* MovieViewModel.swift */,
 				5EB8F5EC29A6AE1700E30FD9 /* MovieDetailViewModel.swift */,
+				5E1C82E429B2756A007BCA77 /* WatchListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -177,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				5E4CF68C2987E1BC006654F8 /* NetworkMenager */,
+				5E1C82DF29B23092007BCA77 /* DataMenager */,
 				5E4CF6882987E15E006654F8 /* Models */,
 				5E4CF6892987E16A006654F8 /* Views */,
 				5E4CF68A2987E182006654F8 /* ViewModels */,
@@ -322,12 +342,16 @@
 				5E0B468929744F0D00412F1D /* SearchViewController.swift in Sources */,
 				5E4CF6922987E570006654F8 /* AuthenticationViewModel.swift in Sources */,
 				5E4CF6962987E695006654F8 /* AccountModels.swift in Sources */,
-				5E0B468729744EFB00412F1D /* FavouriteViewController.swift in Sources */,
+				5E1C82E729B27B17007BCA77 /* WatchListTableViewCell.swift in Sources */,
+				5E0B468729744EFB00412F1D /* WatchListViewController.swift in Sources */,
 				5E04BA2B29A16A300096C322 /* DetailViewController.swift in Sources */,
 				5EBA82622992E10F004D0F64 /* CollectionTableViewCell.swift in Sources */,
 				5EF0354029A0F1D2001AE0C7 /* SearchCollectionViewCell.swift in Sources */,
+				5E1C82E329B230F5007BCA77 /* RealmDataMenager.swift in Sources */,
 				5E92780F297320F3004020D6 /* SceneDelegate.swift in Sources */,
+				5E1C82E129B230B8007BCA77 /* RealmModels.swift in Sources */,
 				5EB8F5E929A3FEFC00E30FD9 /* YoutubeModels.swift in Sources */,
+				5E1C82E529B2756A007BCA77 /* WatchListViewModel.swift in Sources */,
 				5E2A734329A7CF5E008EB8DB /* NetworkService.swift in Sources */,
 				5E0B468529744EDE00412F1D /* HomeViewController.swift in Sources */,
 				5E7B6D1C299FA3C8000DDB88 /* MovieViewModel.swift in Sources */,
