@@ -8,14 +8,17 @@
 class HomeViewModel {
     
     
+    // MARK: Fetches data for the given section and populates the cell
     
     func getData(for section: Int, in cell: CollectionTableViewCell) {
+       
+        // Based on the section, call the corresponding API function to fetch data
         switch section {
         case Sections.TrendingMovies.rawValue:
             APICaller.shared.getTrendingMovies { result in
                 switch result {
-                case .success(let titles):
-                    cell.configure(with: titles)
+                case .success(let movies):
+                    cell.configure(with: movies)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -23,8 +26,8 @@ class HomeViewModel {
         case Sections.TrendingTV.rawValue:
             APICaller.shared.getTrendingTV { result in
                 switch result {
-                case .success(let titles):
-                    cell.configure(with: titles)
+                case .success(let movies):
+                    cell.configure(with: movies)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -32,8 +35,8 @@ class HomeViewModel {
         case Sections.PopularMovies.rawValue:
             APICaller.shared.getPopularMovies { result in
                 switch result {
-                case .success(let titles):
-                    cell.configure(with: titles)
+                case .success(let movies):
+                    cell.configure(with: movies)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -41,8 +44,8 @@ class HomeViewModel {
         case Sections.PopularTV.rawValue:
             APICaller.shared.getPopularTV{ result in
                 switch result {
-                case .success(let titles):
-                    cell.configure(with: titles)
+                case .success(let movies):
+                    cell.configure(with: movies)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -50,8 +53,8 @@ class HomeViewModel {
         case Sections.Upcoming.rawValue:
             APICaller.shared.getUpcoming { result in
                 switch result {
-                case .success(let titles):
-                    cell.configure(with: titles)
+                case .success(let movies):
+                    cell.configure(with: movies)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -59,8 +62,8 @@ class HomeViewModel {
         case Sections.TopRated.rawValue:
             APICaller.shared.getTopRated { result in
                 switch result {
-                case .success(let titles):
-                    cell.configure(with: titles)
+                case .success(let movies):
+                    cell.configure(with: movies)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
