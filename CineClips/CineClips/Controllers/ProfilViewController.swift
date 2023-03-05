@@ -7,23 +7,42 @@
 
 import UIKit
 
-class ProfilViewController: UIViewController {
 
+class ProfilViewController: UIViewController {
+    
+    // MARK: Detail of iOS Course
+    let url = "https://development-course.notion.site/iOS-2-ec09e4e1a29542158ceb7820e337b5a2"
+ 
+    
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: @IBAction
+    
+    @IBAction func detailButtonPressed(_ sender: Any) {
+        guard let url = URL(string: url) else {
+            return
+        }
+            UIApplication.shared.open(url)
     }
-    */
-
+          
+    @IBAction func signOutButtonPressed(_ sender: Any) {
+        AuthNetworkManager.shared.logOut { responce in
+            if responce.success {
+                DispatchQueue.main.async {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let authController = storyboard.instantiateViewController(withIdentifier: "AuthControllerID")
+                    self.view.window?.rootViewController = authController
+                    self.view.window?.makeKeyAndVisible()
+                }
+            }
+            
+        }
+    }
 }
+
+
+
