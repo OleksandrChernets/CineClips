@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class GenreCollectionViewCell: UICollectionViewCell {
+class MovieCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Cell Identifier
     static let identifier = "GenreCollectionViewCell"
