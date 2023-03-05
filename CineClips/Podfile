@@ -2,7 +2,6 @@
 target 'CineClips' do
   use_frameworks!
 
-pod 'Alamofire'
 pod 'RealmSwift'
 pod 'SDWebImage'
 pod 'youtube-ios-player-helper'
