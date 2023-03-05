@@ -98,13 +98,11 @@ class AuthenticationViewController: UIViewController {
 extension AuthenticationViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if let usernameText = userNameTextField.text,
-           let passwordText = passwordTextField.text,
-           !usernameText.isEmpty,
-           !passwordText.isEmpty    {
-            
+        guard let usernameText = userNameTextField.text, !usernameText.isEmpty,
+              let passwordText = passwordTextField.text, !passwordText.isEmpty else {
+            return true
         }
-        
+        // Code to execute when both fields are not empty
         return true
     }
     
