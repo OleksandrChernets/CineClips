@@ -11,6 +11,9 @@ class MovieDetailViewModel {
     
     var movie: Movie? 
     var trailerId: String?
+    var movieFromRealm: MovieRealm?
+    
+    // MARK: - Public Methods
     
     func saveMovieToRealm(movie: Movie?) {
         guard let movie = movie else {
@@ -18,6 +21,9 @@ class MovieDetailViewModel {
         }
         MovieDataManager.shared.saveMovie(movie: movie)
     }
+
+    
+    // MARK: - Network Requests
     
     func getMovieTrailer(completion: @escaping () -> ()) {
         APICaller.shared.getMovieTrailer(with: String(movie?.id ?? 0)) { trailer in
@@ -32,6 +38,8 @@ class MovieDetailViewModel {
         }
     }
     
+    // MARK: - UI Configuration
+    
     func configureUI(title: UILabel, description: UILabel, dateLabel: UILabel, voteCount: UILabel) {
         title.text = movie?.original_title ?? movie?.original_name
         description.text = movie?.overview
@@ -39,5 +47,6 @@ class MovieDetailViewModel {
         voteCount.text = "\(movie?.vote_average ?? 0) (\(movie?.vote_count ?? 0) reviews)"
         
     }
+    
  
 }

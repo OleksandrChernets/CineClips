@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: SingleMovieResponse
+
 struct MediaResponse: Codable {
     let results: [Movie]
 }

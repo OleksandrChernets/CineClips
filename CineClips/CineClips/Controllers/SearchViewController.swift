@@ -11,9 +11,10 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    // MARK: - Properties
     
     private var titles: [Movie] = [Movie]()
+    @IBOutlet weak var collectionView: UICollectionView!
     
     private var searchBar: UISearchController = {
         let sb = UISearchController()
@@ -21,6 +22,8 @@ class SearchViewController: UIViewController {
         sb.searchBar.searchBarStyle = .minimal
         return sb
     }()
+    
+    // MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +34,11 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         
     }
-  
+    
+    // MARK: - Private Methods
+    
     private func fetchDiscoverMovies() {
+        // Use the APICaller.shared to get recommended movies
         APICaller.shared.getRecommendedMovies { [weak self] result in
             switch result {
             case .success(let titles):
@@ -46,13 +52,16 @@ class SearchViewController: UIViewController {
         }
     }
 }
-extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
+// MARK: UICollectionViewDataSource & UICollectionViewDelegate
+
+extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         titles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as? SearchCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as? SearchCollectionViewCell else {
             return UICollectionViewCell()
         }
         let title = titles[indexPath.row]
@@ -61,15 +70,21 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         cell.delegate = self
         return cell
     }
-    
-    func collectionView(_: UICollectionView, layout: UICollectionViewLayout, sizeForItemAt: IndexPath) -> CGSize {
-        CGSize(width: 122, height: 180)
-    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let itm = titles[indexPath.row]
         collectionViewCellDelegate(movie: itm)
     }
 }
+
+// MARK: UICollectionViewDelegateFlowLayout
+
+extension SearchViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_: UICollectionView, layout: UICollectionViewLayout, sizeForItemAt: IndexPath) -> CGSize {
+        CGSize(width: 122, height: 180)
+    }
+}
+
+// MARK: - Search Results Updating
 
 extension SearchViewController: UISearchResultsUpdating {
     
@@ -91,6 +106,8 @@ extension SearchViewController: UISearchResultsUpdating {
         }
     }
 }
+
+// MARK: - Search Collection View Cell Delegate
 
 extension SearchViewController: SearchCollectionViewCellDelegate {
     func collectionViewCellDelegate(movie: Movie) {

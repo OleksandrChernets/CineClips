@@ -8,8 +8,10 @@
 import Foundation
 
 class AuthenticationViewModel {
+    
     // MARK: isLogin toggle
     var isLogin = false
+    
     // MARK: - Create user session
     func signInTapped( _ userName: String, _ password: String, _ completionHandler: @escaping (() -> Void)) {
         guard !userName.isEmpty,
@@ -33,4 +35,5 @@ class AuthenticationViewModel {
         })
         
     }
+    
 }

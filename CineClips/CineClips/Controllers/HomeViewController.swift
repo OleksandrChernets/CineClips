@@ -6,7 +6,9 @@
 //
 
 import UIKit
-import SDWebImage
+
+
+// MARK: Title For Header In Section
 
 enum Sections: Int {
     case TrendingMovies = 0
@@ -17,22 +19,35 @@ enum Sections: Int {
     case TopRated = 5
 }
 
-
 class HomeViewController: UIViewController {
     
+    
+    // MARK: - Properties
+    
     var movies: [Movie] = [Movie]()
+    private var randomMovie: Movie?
+    private var randomMainViewMovie: Movie?
+    var homeViewModel: HomeViewModel = HomeViewModel()
+    
+    // MARK: - @IBOutlet
+    
     @IBOutlet weak var homeTableView: UITableView!
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var movieLabel: UILabel!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var mainMovieAverage: UILabel!
     @IBOutlet weak var releaseDate: UILabel!
-    private var randomMovie: Movie?
-    var homeViewModel: HomeViewModel = HomeViewModel()
+    @IBOutlet weak var playMovieButton: UIButton!
+   
     
+    let sectionTitle: [String] = ["Trending Movies",
+                                  "Trending TV",
+                                  "Popular Movies",
+                                  "Popular TV",
+                                  "Upcoming",
+                                  "Top Rated"]
     
-    let sectionTitle: [String] = ["Trending Movies", "Trending TV", "Popular Movies", "Popular TV", "Upcoming", "Top Rated"]
-    
+    // MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +56,18 @@ class HomeViewController: UIViewController {
         configureImageUI()
     }
     
+    // MARK: - @IBAction
+    
+    @IBAction func playMovieButtonPressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
+        vc.viewModel.movie = randomMainViewMovie
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    // MARK: - Private Methods
+    
+    // Fetch the random movie from API and configure the main image view
     private func configureMainImage() {
         APICaller.shared.getUpcoming { [weak self] result in
             switch result {
@@ -48,6 +75,7 @@ class HomeViewController: UIViewController {
                 DispatchQueue.main.async {
                     let selectedMovie = movies.randomElement()
                     self?.randomMovie = selectedMovie
+                    self?.randomMainViewMovie = selectedMovie
                     guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(selectedMovie?.poster_path ?? "")")
                     else {
                         return
@@ -62,6 +90,9 @@ class HomeViewController: UIViewController {
             }
         }
     }
+    
+    // Configure the main image view with gradient layer
+    
     private func configureImageUI() {
         mainImageView.alpha = 0.7
         let gradientLayer = CAGradientLayer()
@@ -75,7 +106,9 @@ class HomeViewController: UIViewController {
 }
 
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableViewDataSource
+
+extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CollectionTableViewCell else {
@@ -87,14 +120,20 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         sectionTitle.count
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        return 1
     }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitle[section]
+    }
+}
+
+// MARK: UITableViewDelegate
+
+extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else {return}
@@ -102,20 +141,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         header.textLabel?.textColor = .white
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        200
+        return 200
     }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        20
+        return 20
     }
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        20
+        return 20
     }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTitle[section]
-    }
-    
 }
+
+// MARK: CollectionTableViewCellDelegate
+
 extension HomeViewController: CollectionTableViewCellDelegate {
     func tableViewCellDelegate(movie: Movie) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

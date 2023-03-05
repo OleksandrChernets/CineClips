@@ -11,7 +11,8 @@ import Foundation
 final class APICaller {
     static let shared = APICaller()
     
-    //MARK: Trendnig Movies
+    //MARK: Request Trendnig Movies
+    
     func getTrendingMovies(compltetion: @escaping (Result<[Movie], Error>) -> Void) {
         guard let url = URL(string: "\(APIs.baseURL.rawValue)trending/movie/day?api_key=\(APIs.apiKey.rawValue)") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
@@ -30,7 +31,8 @@ final class APICaller {
         task.resume()
     }
     
-    //MARK: Trending TV
+    //MARK: Request Trending TV
+    
     func getTrendingTV(compltetion: @escaping (Result<[Movie], Error>) -> Void) {
         guard let url = URL(string: "\(APIs.baseURL.rawValue)trending/tv/day?api_key=\(APIs.apiKey.rawValue)") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
@@ -49,7 +51,8 @@ final class APICaller {
         task.resume()
     }
     
-    //MARK: Popular Movies
+    //MARK: Request Popular Movies
+    
     func getPopularMovies(compltetion: @escaping (Result<[Movie], Error>) -> Void) {
         guard let url = URL(string: "\(APIs.baseURL.rawValue)movie/popular?api_key=\(APIs.apiKey.rawValue)&language=en-US&page=1") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
@@ -68,7 +71,7 @@ final class APICaller {
         
     }
     
-    //MARK: Popular TV
+    //MARK: Request Popular TV
     func getPopularTV(compltetion: @escaping (Result<[Movie], Error>) -> Void) {
         guard let url = URL(string: "\(APIs.baseURL.rawValue)tv/popular?api_key=\(APIs.apiKey.rawValue)&language=en-US&page=1") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
@@ -87,7 +90,7 @@ final class APICaller {
         
     }
     
-    //MARK: Upcoming movies
+    //MARK: Request Upcoming movies
     func getUpcoming(compltetion: @escaping (Result<[Movie], Error>) -> Void) {
         guard let url = URL(string: "\(APIs.baseURL.rawValue)movie/upcoming?api_key=\(APIs.apiKey.rawValue)&language=en-US&page=1") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
@@ -106,7 +109,7 @@ final class APICaller {
         
     }
     
-    //MARK: Top rated movies
+    //MARK: Request Top Rated Movies
     func getTopRated(compltetion: @escaping (Result<[Movie], Error>) -> Void) {
         guard let url = URL(string: "\(APIs.baseURL.rawValue)movie/top_rated?api_key=\(APIs.apiKey.rawValue)&language=en-US&page=1") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
@@ -125,7 +128,7 @@ final class APICaller {
         
     }
     
-    //MARK: Reccommended Movies
+    //MARK: Request Reccommended Movies
     func getRecommendedMovies(compltetion: @escaping (Result<[Movie], Error>) -> Void) {
         guard let url = URL(string: "\(APIs.baseURL.rawValue)movie/now_playing?api_key=\(APIs.apiKey.rawValue)&language=en-US&page=1") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
@@ -164,7 +167,7 @@ final class APICaller {
         task.resume()
     }
     
-    //MARK: Movie trailer request
+    //MARK: Request Movie Trailer
     func getMovieTrailer(with query: String, completion: @escaping (MovieTrailer) -> ())  {
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
         guard let url = URL(string: "\(APIs.baseURL.rawValue)movie/\(query)/videos?api_key=\(APIs.apiKey.rawValue)&language=en-US") else {
@@ -187,7 +190,7 @@ final class APICaller {
         task.resume()
     }
     
-    //MARK: TV trailer request
+    //MARK: Request TV Trailer
     func getTVTrailer(with query: String, completion: @escaping (MovieTrailer) -> ())  {
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
         guard let url = URL(string: "\(APIs.baseURL.rawValue)tv/\(query)/videos?api_key=\(APIs.apiKey.rawValue)&language=en-US") else {

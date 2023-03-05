@@ -13,15 +13,18 @@ protocol CollectionTableViewCellDelegate: AnyObject {
 
 class CollectionTableViewCell: UITableViewCell {
     
+    // MARK: - Properties
+    
     private var movies: [Movie] = [Movie]()
     weak var delegate: CollectionTableViewCellDelegate?
-
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.dataSource = self
             collectionView.delegate = self
         }
     }
+    
+    // MARK: - Public Methods
     
     public func configure(with titles: [Movie]) {
         self.movies = titles
@@ -32,13 +35,15 @@ class CollectionTableViewCell: UITableViewCell {
     }
 }
 
-extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    // MARK: - UICollectionViewDelegate & UICollectionViewDataSource
+
+extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GenreCollectionViewCell", for: indexPath) as? GenreCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenreCollectionViewCell.identifier, for: indexPath) as? GenreCollectionViewCell else {
             return UICollectionViewCell()
         }
         
@@ -47,10 +52,12 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
         else {
             return UICollectionViewCell()
         }
-
+        
         cell.configure(with: model, with: rate)
         return cell
     }
+}
+extension CollectionTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_: UICollectionView, layout: UICollectionViewLayout, sizeForItemAt: IndexPath) -> CGSize {
         CGSize(width: 140, height: 200)
     }
@@ -62,4 +69,4 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
     
 }
 
-// asdasd
+

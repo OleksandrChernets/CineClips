@@ -13,9 +13,13 @@ protocol SearchCollectionViewCellDelegate: AnyObject {
 
 class SearchCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Cell Identifier
+    static let identifier = "SearchCollectionViewCell"
+    
     @IBOutlet weak var posterImage: UIImageView!
     weak var delegate: SearchCollectionViewCellDelegate?
     
+    // MARK: Publick Methods
     
     public func configure(with model: MovieViewModel){
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(model.posterURL)") else {
