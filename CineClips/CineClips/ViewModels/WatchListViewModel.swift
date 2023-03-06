@@ -8,27 +8,20 @@
 
 import RealmSwift
 
+import RealmSwift
+
 class WatchListViewModel {
-    
-    let realm = try? Realm()
+
     var movies: [MovieRealm] = []
    
     
     // Get all movies from Realm database
-    func getMovie() -> [MovieRealm] {
-          var movies = [MovieRealm]()
-          guard let movieResult = realm?.objects(MovieRealm.self) else { return [] }
-          for movie in movieResult {
-            movies.append(movie)
-          }
-          return movies
+    func getMovie() {
+        movies = MovieDataManager.shared.getMovie()
       }
     
     // Delete a movie from the Realm database
     func deleteMovie(movie: MovieRealm) {
-          guard let realm = realm else { return }
-          try? realm.write {
-              realm.delete(movie)
-          }
+        MovieDataManager.shared.deleteMovie(movie: movie)
       }
 }

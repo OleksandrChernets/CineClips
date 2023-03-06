@@ -24,7 +24,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(model)") else {
             return
         }
-        posterImage.sd_setImage(with: url, completed: nil)
+        posterImage.sd_setImage(with: url)
         averageLabel.text = String(rate)
     }
 }

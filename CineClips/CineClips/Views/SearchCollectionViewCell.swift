@@ -21,7 +21,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
     
     // MARK: Publick Methods
     
-    public func configure(with model: MovieViewModel){
+    public func configure(with model: MoviePosterURL){
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(model.posterURL)") else {
             return
         }

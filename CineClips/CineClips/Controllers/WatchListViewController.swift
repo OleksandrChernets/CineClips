@@ -12,7 +12,6 @@ class WatchListViewController: UIViewController {
     // MARK: Properties
     
     var movies: [Movie] = []
-    var savedMovies: [MovieRealm] = []
     var viewModel: WatchListViewModel = WatchListViewModel()
     
     @IBOutlet weak var tableView: UITableView!
@@ -22,21 +21,25 @@ class WatchListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "WATCH LIST"
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        savedMovies = viewModel.getMovie()
+        viewModel.getMovie()
         self.tableView.reloadData()
+        tableView.setContentOffset(.zero, animated: true)
     }
-    
 }
+
+
 
 // MARK: UITableViewDelegate & UITableViewDataSource
 
 extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return savedMovies.isEmpty ? 0 : savedMovies.count
+        return viewModel.movies.isEmpty ? 0 : viewModel.movies.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,25 +47,35 @@ extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         cell.delegate = self
-        cell.configureWith(movie: savedMovies[indexPath.row])
+        cell.configureWith(movie: viewModel.movies[indexPath.row])
+        cell.selectionStyle = .none
         return cell
     }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let movieToDelete = savedMovies[indexPath.row]
-            viewModel.deleteMovie(movie: movieToDelete)
-            savedMovies.remove(at: indexPath.row)
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, completion) in
+            guard let self = self else { return }
+            let movieToDelete = self.viewModel.movies[indexPath.row]
+            self.viewModel.deleteMovie(movie: movieToDelete)
+            self.viewModel.movies.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            completion(true)
         }
+        deleteAction.image = UIImage(named: "deleteMovieImage")
+        let tableViewColor = tableView.backgroundColor ?? .black
+        deleteAction.backgroundColor = tableViewColor
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         280
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = savedMovies[indexPath.row]
+        let item = viewModel.movies[indexPath.row]
         tableViewCellDelegate(movie: item)
     }
-    
 }
 
 // MARK: WatchListTableViewCellDelegate

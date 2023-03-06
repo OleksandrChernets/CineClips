@@ -28,11 +28,14 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchDiscoverMovies()
-        view.backgroundColor = .systemBackground
+        collectionView.setContentOffset(.zero, animated: true)
         searchBar.searchResultsUpdater = self
         navigationItem.searchController = searchBar
         navigationController?.navigationBar.tintColor = .white
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.setContentOffset(.zero, animated: true)
     }
     
     // MARK: - Private Methods
@@ -65,7 +68,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
             return UICollectionViewCell()
         }
         let title = titles[indexPath.row]
-        let model = MovieViewModel(posterURL: title.poster_path ?? title.backdrop_path ?? "")
+        let model = MoviePosterURL(posterURL: title.poster_path ?? title.backdrop_path ?? "")
         cell.configure(with: model)
         cell.delegate = self
         return cell

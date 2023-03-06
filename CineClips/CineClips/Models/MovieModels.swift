@@ -29,3 +29,6 @@ struct Movie: Codable {
     var original_language: String?
     
 }
+struct MoviePosterURL {
+    let posterURL: String
+}

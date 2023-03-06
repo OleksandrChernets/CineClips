@@ -32,6 +32,7 @@ struct MovieDataManager {
             realm?.add(movieRealm, update: .all)
         }
     }
+    
     func getMovie() -> [MovieRealm] {
         var movies = [MovieRealm]()
         guard let movieResult = realm?.objects(MovieRealm.self) else { return [] }
@@ -39,6 +40,11 @@ struct MovieDataManager {
             movies.append(movie)
         }
         return movies
+    }
+    
+    func getMovieToRealm(movie: Movie) -> MovieRealm {
+        guard let movieRealm = realm?.object(ofType: MovieRealm.self, forPrimaryKey: movie.id) else { return MovieRealm() }
+        return movieRealm
     }
     
     func deleteMovie(movie: MovieRealm) {

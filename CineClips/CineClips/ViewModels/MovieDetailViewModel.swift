@@ -21,7 +21,15 @@ class MovieDetailViewModel {
         }
         MovieDataManager.shared.saveMovie(movie: movie)
     }
-
+    
+   
+    func deleteMovie(movie: Movie?) {
+        guard let movie = movie else {
+            return
+        }
+        let movieRealm = MovieDataManager.shared.getMovieToRealm(movie: movie)
+        MovieDataManager.shared.deleteMovie(movie: movieRealm)
+    }
     
     // MARK: - Network Requests
     

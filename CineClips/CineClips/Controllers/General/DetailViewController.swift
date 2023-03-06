@@ -25,10 +25,21 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var decriptionLabel: UILabel!
     @IBOutlet weak var addToWatchListButton: UIButton!
+    
     @IBOutlet weak var voteCount: UILabel!
     var viewModel = MovieDetailViewModel()
-    
-    
+  
+    var isFavoriteMovie: Bool = false {
+        didSet {
+            if isFavoriteMovie {
+                addToWatchListButton.setImage(UIImage(named:  "saved"), for: .normal)
+                viewModel.saveMovieToRealm(movie: viewModel.movie)
+            } else {
+                addToWatchListButton.setImage(UIImage(named:  "save"), for: .normal)
+                viewModel.deleteMovie(movie: viewModel.movie)
+            }
+        }
+    }
     // MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
@@ -39,12 +50,17 @@ class DetailViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         decriptionLabel.sizeToFit()
     }
+
     
     // MARK: - IBActions
     
     @IBAction func addToWatchListButtonPressed(_ sender: Any) {
-        viewModel.saveMovieToRealm(movie: viewModel.movie)
+        isFavoriteMovie = !isFavoriteMovie
     }
+   
+        
+        
+   
     
     
     // MARK: - Private Methods

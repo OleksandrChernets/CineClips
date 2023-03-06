@@ -26,7 +26,6 @@
 		5E4CF6962987E695006654F8 /* AccountModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CF6952987E695006654F8 /* AccountModels.swift */; };
 		5E4CF6982987FC62006654F8 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CF6972987FC62006654F8 /* AuthenticationViewController.swift */; };
 		5E4E3B8729B3D27B00B2C2C2 /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E3B8629B3D27A00B2C2C2 /* ProfilViewController.swift */; };
-		5E7B6D1C299FA3C8000DDB88 /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B6D1B299FA3C8000DDB88 /* MovieViewModel.swift */; };
 		5E92780D297320F3004020D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E92780C297320F3004020D6 /* AppDelegate.swift */; };
 		5E92780F297320F3004020D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E92780E297320F3004020D6 /* SceneDelegate.swift */; };
 		5E927811297320F3004020D6 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E927810297320F3004020D6 /* MainTabBarViewController.swift */; };
@@ -62,7 +61,6 @@
 		5E4CF6952987E695006654F8 /* AccountModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModels.swift; sourceTree = "<group>"; };
 		5E4CF6972987FC62006654F8 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		5E4E3B8629B3D27A00B2C2C2 /* ProfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
-		5E7B6D1B299FA3C8000DDB88 /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		5E927809297320F3004020D6 /* CineClips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CineClips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E92780C297320F3004020D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E92780E297320F3004020D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				5E4CF6912987E570006654F8 /* AuthenticationViewModel.swift */,
-				5E7B6D1B299FA3C8000DDB88 /* MovieViewModel.swift */,
 				5EB8F5EC29A6AE1700E30FD9 /* MovieDetailViewModel.swift */,
 				5E1C82E429B2756A007BCA77 /* WatchListViewModel.swift */,
 				5E1C82EA29B36396007BCA77 /* HomeViewModel.swift */,
@@ -378,7 +375,6 @@
 				5E2A734329A7CF5E008EB8DB /* NetworkService.swift in Sources */,
 				5E1C82EB29B36396007BCA77 /* HomeViewModel.swift in Sources */,
 				5E0B468529744EDE00412F1D /* HomeViewController.swift in Sources */,
-				5E7B6D1C299FA3C8000DDB88 /* MovieViewModel.swift in Sources */,
 				5E4CF68E2987E340006654F8 /* Authentication.swift in Sources */,
 				5E4CF6902987E497006654F8 /* AuthenticationModels.swift in Sources */,
 			);

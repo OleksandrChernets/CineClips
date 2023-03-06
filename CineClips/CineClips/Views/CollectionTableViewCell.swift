@@ -52,7 +52,6 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
         else {
             return UICollectionViewCell()
         }
-        
         cell.configure(with: model, with: rate)
         return cell
     }

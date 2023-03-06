@@ -56,6 +56,10 @@ class HomeViewController: UIViewController {
         configureImageUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        homeTableView.setContentOffset(.zero, animated: true)
+    }
+    
     // MARK: - @IBAction
     
     @IBAction func playMovieButtonPressed(_ sender: Any) {
@@ -117,6 +121,7 @@ extension HomeViewController: UITableViewDataSource {
         cell.layer.cornerRadius = 15
         homeViewModel.getData(for: indexPath.section, in: cell)
         cell.delegate = self
+        cell.selectionStyle = .none
         return cell
     }
     
