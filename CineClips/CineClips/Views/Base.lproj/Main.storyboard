@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MdJ-mw-zdy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -85,7 +85,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6gR-YY-ye8">
-                                        <rect key="frame" x="76.666666666666671" y="724" width="239.66666666666657" height="35"/>
+                                        <rect key="frame" x="76.666666666666671" y="724" width="239.66666666666663" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="46a-m9-bpq"/>
                                         </constraints>
@@ -422,7 +422,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ury-EE-T5g">
-                                <rect key="frame" x="76" y="612" width="240" height="35"/>
+                                <rect key="frame" x="76" y="609.66666666666663" width="240" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sign Out">
                                     <backgroundConfiguration key="background"/>
@@ -434,7 +434,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMF-bV-zaZ">
-                                <rect key="frame" x="76" y="554" width="240" height="35"/>
+                                <rect key="frame" x="76" y="551.66666666666663" width="240" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Show Details">
                                     <backgroundConfiguration key="background"/>
@@ -444,9 +444,9 @@
                                     <action selector="detailButtonPressed:" destination="MtJ-J9-HZW" eventType="touchUpInside" id="SC5-m4-JI4"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final project of the iOS Course  by Oleksandr Slobodianiuk" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdN-Qm-cbo" userLabel="movieLabel">
-                                <rect key="frame" x="36" y="451" width="321" height="52.666666666666686"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The final project of the iOS Course  by Oleksandr Slobodianiuk" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdN-Qm-cbo" userLabel="movieLabel">
+                                <rect key="frame" x="16" y="451" width="361" height="50.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -467,7 +467,7 @@
                         <color key="backgroundColor" red="0.109803915" green="0.082352943720000002" blue="0.14901961389999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="lgv-SV-aad" firstAttribute="leading" secondItem="fKd-dM-oWb" secondAttribute="leading" constant="91" id="0r4-Rd-0uJ"/>
-                            <constraint firstItem="AdN-Qm-cbo" firstAttribute="leading" secondItem="fKd-dM-oWb" secondAttribute="leading" constant="36" id="6uR-Oh-HaU"/>
+                            <constraint firstItem="AdN-Qm-cbo" firstAttribute="leading" secondItem="fKd-dM-oWb" secondAttribute="leading" constant="16" id="6uR-Oh-HaU"/>
                             <constraint firstItem="lgv-SV-aad" firstAttribute="top" secondItem="fKd-dM-oWb" secondAttribute="top" constant="135" id="AvQ-oY-cN1"/>
                             <constraint firstItem="fKd-dM-oWb" firstAttribute="trailing" secondItem="Ury-EE-T5g" secondAttribute="trailing" constant="77" id="DdY-9u-NW4"/>
                             <constraint firstItem="rMF-bV-zaZ" firstAttribute="width" secondItem="Ury-EE-T5g" secondAttribute="width" id="G6V-fE-QzX"/>
@@ -478,7 +478,7 @@
                             <constraint firstItem="Ury-EE-T5g" firstAttribute="top" secondItem="rMF-bV-zaZ" secondAttribute="bottom" constant="23" id="WTV-2Q-LpY"/>
                             <constraint firstItem="fKd-dM-oWb" firstAttribute="trailing" secondItem="lgv-SV-aad" secondAttribute="trailing" constant="81" id="acC-d9-2kL"/>
                             <constraint firstItem="Dkf-AY-Wmt" firstAttribute="top" secondItem="lgv-SV-aad" secondAttribute="bottom" constant="8" symbolic="YES" id="chh-7o-Xw2"/>
-                            <constraint firstItem="fKd-dM-oWb" firstAttribute="trailing" secondItem="AdN-Qm-cbo" secondAttribute="trailing" constant="36" id="frd-dU-Zih"/>
+                            <constraint firstItem="fKd-dM-oWb" firstAttribute="trailing" secondItem="AdN-Qm-cbo" secondAttribute="trailing" constant="16" id="frd-dU-Zih"/>
                             <constraint firstItem="fKd-dM-oWb" firstAttribute="trailing" secondItem="rMF-bV-zaZ" secondAttribute="trailing" constant="77" id="m2E-PG-M4u"/>
                             <constraint firstItem="fKd-dM-oWb" firstAttribute="trailing" secondItem="Dkf-AY-Wmt" secondAttribute="trailing" constant="16" id="pxS-f6-0Kc"/>
                             <constraint firstItem="Dkf-AY-Wmt" firstAttribute="leading" secondItem="fKd-dM-oWb" secondAttribute="leading" constant="16" id="yp4-TO-LzS"/>
@@ -499,7 +499,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="q9Z-0q-zlt">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <rect key="frame" x="0.0" y="48" width="393" height="804"/>
                                 <color key="backgroundColor" red="0.109803915" green="0.082352943720000002" blue="0.14901961389999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="DOM-5e-mFE">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="461"/>
@@ -716,7 +716,7 @@
                             <constraint firstAttribute="bottom" secondItem="q9Z-0q-zlt" secondAttribute="bottom" id="Dbg-bb-gv9"/>
                             <constraint firstItem="q9Z-0q-zlt" firstAttribute="trailing" secondItem="Xp6-3Q-wfZ" secondAttribute="trailing" id="ZTh-V0-vvM"/>
                             <constraint firstItem="q9Z-0q-zlt" firstAttribute="leading" secondItem="Xp6-3Q-wfZ" secondAttribute="leading" id="a1t-jw-xeT"/>
-                            <constraint firstItem="q9Z-0q-zlt" firstAttribute="top" secondItem="3cQ-Sr-3uX" secondAttribute="top" id="aC8-AO-zGI"/>
+                            <constraint firstItem="q9Z-0q-zlt" firstAttribute="top" secondItem="3cQ-Sr-3uX" secondAttribute="top" constant="48" id="aC8-AO-zGI"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Movie" image="tv" catalog="system" id="IWE-b4-kd0"/>
@@ -735,7 +735,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IGz-SK-Cw2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4380" y="-918.02575107296138"/>
+            <point key="canvasLocation" x="4379.3893129770995" y="-918.30985915492965"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="sQp-iw-rzn">
