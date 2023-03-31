@@ -16,7 +16,7 @@ Explore your next favorite film or TV series with **CineClips** - your ultimate 
 - SDWebImage
 - YoutubeiOSPlayerHelper
 - RealmSwift
-- SroryBoard
+- StoryBoard
 - TheMovieDataBase API
 - Networking with URL Session
 
