@@ -499,14 +499,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="q9Z-0q-zlt">
-                                <rect key="frame" x="0.0" y="48" width="393" height="804"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" red="0.109803915" green="0.082352943720000002" blue="0.14901961389999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="DOM-5e-mFE">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="461"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vBU-cv-rab" userLabel="mainImage">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="461"/>
+                                            <rect key="frame" x="0.0" y="-104" width="393" height="565"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="565" id="Nhz-dB-ymh"/>
+                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <integer key="value" value="20"/>
@@ -602,7 +605,6 @@
                                         <constraint firstAttribute="trailing" secondItem="2OZ-VQ-WFs" secondAttribute="trailing" constant="8" id="Zme-Ze-M3T"/>
                                         <constraint firstItem="oHq-nn-VY9" firstAttribute="leading" secondItem="DOM-5e-mFE" secondAttribute="leading" constant="8" id="fAE-Om-EJ6"/>
                                         <constraint firstItem="jxl-su-keG" firstAttribute="leading" secondItem="bFL-P0-398" secondAttribute="trailing" constant="9" id="gGr-Nm-ClG"/>
-                                        <constraint firstItem="vBU-cv-rab" firstAttribute="top" secondItem="DOM-5e-mFE" secondAttribute="top" id="gQ3-WW-rwg"/>
                                         <constraint firstAttribute="trailing" secondItem="CKo-md-3k0" secondAttribute="trailing" constant="8" id="ic8-n9-N3W"/>
                                         <constraint firstItem="Ev1-L5-zKt" firstAttribute="leading" secondItem="EmO-kO-eah" secondAttribute="trailing" constant="9" id="ihF-DR-xac"/>
                                         <constraint firstItem="EmO-kO-eah" firstAttribute="leading" secondItem="bFL-P0-398" secondAttribute="leading" id="k6b-Eb-UN2"/>
@@ -716,7 +718,7 @@
                             <constraint firstAttribute="bottom" secondItem="q9Z-0q-zlt" secondAttribute="bottom" id="Dbg-bb-gv9"/>
                             <constraint firstItem="q9Z-0q-zlt" firstAttribute="trailing" secondItem="Xp6-3Q-wfZ" secondAttribute="trailing" id="ZTh-V0-vvM"/>
                             <constraint firstItem="q9Z-0q-zlt" firstAttribute="leading" secondItem="Xp6-3Q-wfZ" secondAttribute="leading" id="a1t-jw-xeT"/>
-                            <constraint firstItem="q9Z-0q-zlt" firstAttribute="top" secondItem="3cQ-Sr-3uX" secondAttribute="top" constant="48" id="aC8-AO-zGI"/>
+                            <constraint firstItem="q9Z-0q-zlt" firstAttribute="top" secondItem="3cQ-Sr-3uX" secondAttribute="top" id="aC8-AO-zGI"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Movie" image="tv" catalog="system" id="IWE-b4-kd0"/>
