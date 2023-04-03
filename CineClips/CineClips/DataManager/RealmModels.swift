@@ -20,7 +20,4 @@ class MovieRealm: Object {
     @Persisted var firstAirDate: String?
     @Persisted var backdropPath: String?
     @Persisted var originaLanguage: String?
-    
-    
-    
 }

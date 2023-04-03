@@ -9,7 +9,6 @@
 import RealmSwift
 
 // MARK: - Movie Data Manager
-
 struct MovieDataManager {
     
     static let shared = MovieDataManager()
@@ -17,7 +16,6 @@ struct MovieDataManager {
     private init() {}
     
     // MARK: - MovieDataManager Functions
-    
     func saveMovie(movie: Movie?) {
         let movieRealm = MovieRealm()
         movieRealm.id = movie?.id ?? 0
