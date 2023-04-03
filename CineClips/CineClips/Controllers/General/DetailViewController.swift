@@ -13,22 +13,21 @@ protocol DetailViewControllerDelegate: AnyObject {
     func saveMovie(movie: Movie)
 }
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     
     // MARK: - Cell Identifier
     static let identifier = "DetailViewController"
     
     // MARK: IBOutlets
-    
     @IBOutlet weak var ytPlayerView: YTPlayerView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var decriptionLabel: UILabel!
     @IBOutlet weak var addToWatchListButton: UIButton!
-    
     @IBOutlet weak var voteCount: UILabel!
+    
+    //MARK: Properties
     var viewModel = MovieDetailViewModel()
-  
     var isFavoriteMovie: Bool = false {
         didSet {
             if isFavoriteMovie {
@@ -40,8 +39,8 @@ class DetailViewController: UIViewController {
             }
         }
     }
-    // MARK: - Lifecycle Methods
     
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         ytPlayerView.layer.masksToBounds = true
@@ -50,23 +49,14 @@ class DetailViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         decriptionLabel.sizeToFit()
     }
-
     
     // MARK: - IBActions
-    
     @IBAction func addToWatchListButtonPressed(_ sender: Any) {
         isFavoriteMovie = !isFavoriteMovie
     }
-   
-        
-        
-   
-    
     
     // MARK: - Private Methods
-    
     private func loadTrailers() {
-        
         //  Load TV trailer
         viewModel.getTVTrailer { [weak self] in
             guard let self = self else { return }
@@ -74,8 +64,8 @@ class DetailViewController: UIViewController {
                 self.ytPlayerView.load(withVideoId: self.viewModel.trailerId ?? "")
             }
         }
-        //  Load Movie trailer
         
+        //  Load Movie trailer
         viewModel.getMovieTrailer { [weak self] in
             guard let self = self else { return }
             DispatchQueue.main.async {
@@ -89,12 +79,4 @@ class DetailViewController: UIViewController {
                               dateLabel: dateLabel,
                               voteCount: voteCount)
     }
-    
 }
-
-
-
-
-
-
-

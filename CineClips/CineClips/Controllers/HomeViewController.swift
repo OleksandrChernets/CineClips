@@ -9,7 +9,6 @@ import UIKit
 
 
 // MARK: Title For Header In Section
-
 enum Sections: Int {
     case TrendingMovies = 0
     case TrendingTV = 1
@@ -19,18 +18,9 @@ enum Sections: Int {
     case TopRated = 5
 }
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
-    
-    // MARK: - Properties
-    
-    var movies: [Movie] = [Movie]()
-    private var randomMovie: Movie?
-    private var randomMainViewMovie: Movie?
-    var homeViewModel: HomeViewModel = HomeViewModel()
-    
-    // MARK: - @IBOutlet
-    
+    // MARK: - @IBOutlets
     @IBOutlet weak var homeTableView: UITableView!
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var movieLabel: UILabel!
@@ -38,8 +28,12 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var mainMovieAverage: UILabel!
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var playMovieButton: UIButton!
-   
     
+    // MARK: - Properties
+    var movies: [Movie] = [Movie]()
+    private var randomMovie: Movie?
+    private var randomMainViewMovie: Movie?
+    var homeViewModel: HomeViewModel = HomeViewModel()
     let sectionTitle: [String] = ["Trending Movies",
                                   "Trending TV",
                                   "Popular Movies",
@@ -48,7 +42,6 @@ class HomeViewController: UIViewController {
                                   "Top Rated"]
     
     // MARK: - Lifecycle Methods
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = .white
@@ -60,8 +53,7 @@ class HomeViewController: UIViewController {
         homeTableView.setContentOffset(.zero, animated: true)
     }
     
-    // MARK: - @IBAction
-    
+    // MARK: - @IBActions
     @IBAction func playMovieButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
@@ -70,7 +62,6 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: - Private Methods
-    
     // Fetch the random movie from API and configure the main image view
     private func configureMainImage() {
         APICaller.shared.getUpcoming { [weak self] result in
@@ -96,7 +87,6 @@ class HomeViewController: UIViewController {
     }
     
     // Configure the main image view with gradient layer
-    
     private func configureImageUI() {
         mainImageView.alpha = 0.7
         let gradientLayer = CAGradientLayer()
@@ -109,9 +99,7 @@ class HomeViewController: UIViewController {
     }
 }
 
-
 // MARK: - UITableViewDataSource
-
 extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -128,16 +116,17 @@ extension HomeViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         sectionTitle.count
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitle[section]
     }
 }
 
 // MARK: UITableViewDelegate
-
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -145,19 +134,21 @@ extension HomeViewController: UITableViewDelegate {
         header.textLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
         header.textLabel?.textColor = .white
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20
     }
+    
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 20
     }
 }
 
 // MARK: CollectionTableViewCellDelegate
-
 extension HomeViewController: CollectionTableViewCellDelegate {
     func tableViewCellDelegate(movie: Movie) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

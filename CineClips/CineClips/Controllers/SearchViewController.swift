@@ -9,13 +9,11 @@ import UIKit
 
 
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     
     // MARK: - Properties
-    
     private var titles: [Movie] = [Movie]()
     @IBOutlet weak var collectionView: UICollectionView!
-    
     private var searchBar: UISearchController = {
         let sb = UISearchController()
         sb.searchBar.placeholder = "Search for a Movies or a TV Shows"
@@ -24,7 +22,6 @@ class SearchViewController: UIViewController {
     }()
     
     // MARK: - Lifecycle Methods
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchDiscoverMovies()
@@ -32,14 +29,13 @@ class SearchViewController: UIViewController {
         searchBar.searchResultsUpdater = self
         navigationItem.searchController = searchBar
         navigationController?.navigationBar.tintColor = .white
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         collectionView.setContentOffset(.zero, animated: true)
     }
     
     // MARK: - Private Methods
-    
     private func fetchDiscoverMovies() {
         // Use the APICaller.shared to get recommended movies
         APICaller.shared.getRecommendedMovies { [weak self] result in
@@ -57,8 +53,8 @@ class SearchViewController: UIViewController {
 }
 
 // MARK: UICollectionViewDataSource & UICollectionViewDelegate
-
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         titles.count
     }
@@ -80,15 +76,14 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
-
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_: UICollectionView, layout: UICollectionViewLayout, sizeForItemAt: IndexPath) -> CGSize {
         CGSize(width: 122, height: 180)
     }
 }
 
 // MARK: - Search Results Updating
-
 extension SearchViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -111,13 +106,12 @@ extension SearchViewController: UISearchResultsUpdating {
 }
 
 // MARK: - Search Collection View Cell Delegate
-
 extension SearchViewController: SearchCollectionViewCellDelegate {
+    
     func collectionViewCellDelegate(movie: Movie) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         vc.viewModel.movie = movie
         navigationController?.pushViewController(vc, animated: true)
-        
     }
 }

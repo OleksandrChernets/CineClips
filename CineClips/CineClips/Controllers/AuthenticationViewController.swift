@@ -9,9 +9,11 @@ import Foundation
 
 import UIKit
 
-class AuthenticationViewController: UIViewController {
-    lazy var authenticationViewModel = AuthenticationViewModel()
+final class AuthenticationViewController: UIViewController {
     
+    //MARK: @IBOutlets
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var guestInButton: UIButton!
     @IBOutlet weak var loginImage: UIImageView! {
         didSet {
             let gradientLayer = CAGradientLayer()
@@ -19,7 +21,6 @@ class AuthenticationViewController: UIViewController {
             gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
             gradientLayer.startPoint = CGPoint(x: 0.5, y: 1)
             gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.5)
-            
             loginImage.layer.addSublayer(gradientLayer)
             loginImage.layer.mask = gradientLayer
         }
@@ -34,9 +35,9 @@ class AuthenticationViewController: UIViewController {
     @IBOutlet weak var userNameTextField: UITextField! {
         didSet {
             userNameTextField.delegate = self
-            
         }
     }
+    
     @IBOutlet weak var passwordTextField: UITextField! {
         didSet {
             passwordTextField.delegate = self
@@ -44,9 +45,11 @@ class AuthenticationViewController: UIViewController {
             passwordTextField.textContentType = .oneTimeCode
         }
     }
-    @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var guestInButton: UIButton!
     
+    //MARK: Properties
+    lazy var authenticationViewModel = AuthenticationViewModel()
+    
+    //MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -61,26 +64,28 @@ class AuthenticationViewController: UIViewController {
                 self.view.window?.rootViewController = firstNavigationController
                 self.view.window?.makeKeyAndVisible()
             }
-            
         }
     }
-    // MARK: - Sign In button action
+    
+    //MARK: @IBActions
+    //Sign In button action
     @IBAction func signInTapped(_ sender: UIButton) {
         authenticationViewModel.signInTapped(userNameTextField.text ?? "", passwordTextField.text ?? "") {
             self.bindAuthentication()
         }
         
     }
-    // MARK: - Guest In button action
+    
+    //Guest In button action
     @IBAction func guestSignInTapped(_ sender: UIButton) {
         authenticationViewModel.guestSignInTapped {
             self.bindAuthentication()
         }
-        
     }
+    
     // MARK: - Configure UI
     private func setupUI() {
-        // MARK: - Configure gueastInButton
+        //Configure gueastInButton
         let guestButtonTextAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 13),
             .foregroundColor: UIColor.white,
@@ -92,8 +97,8 @@ class AuthenticationViewController: UIViewController {
         )
         guestInButton.setAttributedTitle(attributeString, for: .normal)
     }
-    
 }
+
 // MARK: - Check textfields are empties, update UI
 extension AuthenticationViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -105,5 +110,4 @@ extension AuthenticationViewController: UITextFieldDelegate {
         // Code to execute when both fields are not empty
         return true
     }
-    
 }
