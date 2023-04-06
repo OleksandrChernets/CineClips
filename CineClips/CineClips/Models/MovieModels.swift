@@ -27,8 +27,8 @@ struct Movie: Codable {
     var first_air_date: String?
     var backdrop_path: String?
     var original_language: String?
-    
 }
+
 struct MoviePosterURL {
     let posterURL: String
 }

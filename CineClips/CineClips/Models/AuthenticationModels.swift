@@ -28,6 +28,7 @@ struct ValidateToken: Codable {
         case requestToken = "request_token"
     }
 }
+
 // MARK: - TokenBody
 struct TokenBody: Codable {
     let requestToken: String
@@ -36,6 +37,7 @@ struct TokenBody: Codable {
         case requestToken = "request_token"
     }
 }
+
 // MARK: - SessionID
 struct SessionID: Codable {
     let success: Bool
@@ -58,6 +60,7 @@ struct GuestSessionID: Codable {
         case expiresAt = "expires_at"
     }
 }
+
 // MARK: - SessionIDBody
 struct SessionIDBodyForDel: Codable {
     let sessionID: String
@@ -66,8 +69,8 @@ struct SessionIDBodyForDel: Codable {
         case sessionID = "session_id"
     }
 }
+
 // MARK: - Log Out Responce
 struct LogOutResponce: Codable {
     let success: Bool
-    
 }
