@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - VideoModel
+// MARK: VideoModel
 struct MovieTrailers: Codable {
     let id: Int
     let results: [MovieTrailer]

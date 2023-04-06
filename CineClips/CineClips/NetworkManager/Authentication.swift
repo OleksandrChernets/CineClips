@@ -7,7 +7,8 @@
 
 import Foundation
 
-class AuthNetworkManager {
+final class AuthNetworkManager {
+    
     static let shared = AuthNetworkManager()
     private init() {}
     
@@ -30,6 +31,7 @@ class AuthNetworkManager {
             })
         }.resume()
     }
+    
     // MARK: Validate token with userName and password
     private  func logInWith(username: String, password: String, _ completionHandler: @escaping () -> Void) {
         let validateBody = ValidateToken(username: username, password: password, requestToken: self.token)
@@ -53,6 +55,7 @@ class AuthNetworkManager {
             }
         }.resume()
     }
+    
     // MARK: Create session id
     private func createSession(with token: String, completionHandler: @escaping (SessionID) -> Void) {
         let tokenBody = TokenBody(requestToken: token)
@@ -79,6 +82,7 @@ class AuthNetworkManager {
             }
         }.resume()
     }
+    
     // MARK: Create guests session
     func guestSession(_ completionHandler: @escaping (GuestSessionID) -> Void) {
         guard let url = URL(string: APIs.guestSessionID.rawValue) else { return }
@@ -95,6 +99,7 @@ class AuthNetworkManager {
             })
         }.resume()
     }
+    
     // MARK: Get users info
     private func getDetails(_ sessionID: String, completionHandler: @escaping () -> Void) {
         guard let url = URL(string: APIs.account.rawValue) else { return }
@@ -113,8 +118,10 @@ class AuthNetworkManager {
             })
         }.resume()
     }
+    
     // MARK: Make requests one by one
     func makeMultiRequest(username: String, password: String, completionHandler: @escaping (Bool) -> Void) {
+        
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             let group = DispatchGroup()
@@ -142,6 +149,7 @@ class AuthNetworkManager {
             }
         }
     }
+    
     // MARK: LogOut request
     func logOut(completionHandler: @escaping (LogOutResponce) -> Void) {
         let sessionIdBody = SessionIDBodyForDel(sessionID: sessionID)
@@ -166,6 +174,4 @@ class AuthNetworkManager {
             }
         }.resume()
     }
-    
 }
-
