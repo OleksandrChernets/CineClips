@@ -21,7 +21,6 @@ enum APIs: String {
     case keyForVideos = "/videos?api_key=d25ed297ac8f5f5e54eef6caa0ee45d5&language=en-US"
     case defaultYoutubePath = "https://www.youtube.com/watch?v="
     
-    
     // MARK: Responce check func
     static func checkResponce(_ data: Data?, _ responce: URLResponse?, _ error: Error?, completionHandler: @escaping (Data) -> Void) {
         if error != nil {
@@ -32,4 +31,3 @@ enum APIs: String {
         }
     }
 }
-
