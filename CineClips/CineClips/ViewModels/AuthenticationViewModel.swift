@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AuthenticationViewModel {
+final class AuthenticationViewModel {
     
     // MARK: isLogin toggle
     var isLogin = false
@@ -19,13 +19,14 @@ class AuthenticationViewModel {
             print("error")
             return
         }
+        
         AuthNetworkManager.shared.makeMultiRequest(username: userName, password: password) { [weak self] success in
             guard let self = self else { return }
             self.isLogin = success
             completionHandler()
         }
-        
     }
+    
     // MARK: Create guest session
     func guestSignInTapped(_ completionHandler: @escaping (() -> Void)) {
         AuthNetworkManager.shared.guestSession({ [weak self] guestSession in
@@ -33,7 +34,5 @@ class AuthenticationViewModel {
             self.isLogin = guestSession.success
             completionHandler()
         })
-        
     }
-    
 }
