@@ -11,10 +11,9 @@ protocol CollectionTableViewCellDelegate: AnyObject {
     func tableViewCellDelegate(movie: Movie)
 }
 
-class CollectionTableViewCell: UITableViewCell {
+final class CollectionTableViewCell: UITableViewCell {
     
     // MARK: - Properties
-    
     private var movies: [Movie] = [Movie]()
     weak var delegate: CollectionTableViewCellDelegate?
     @IBOutlet weak var collectionView: UICollectionView! {
@@ -23,21 +22,19 @@ class CollectionTableViewCell: UITableViewCell {
             collectionView.delegate = self
         }
     }
-    
+
     // MARK: - Public Methods
-    
     public func configure(with titles: [Movie]) {
         self.movies = titles
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
-            
         }
     }
 }
 
     // MARK: - UICollectionViewDelegate & UICollectionViewDataSource
-
 extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         movies.count
     }
@@ -46,7 +43,6 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath) as? MovieCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
         guard let model = movies[indexPath.row].poster_path ?? movies[indexPath.row].backdrop_path,
               let rate = movies[indexPath.row].vote_average
         else {
@@ -56,7 +52,9 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
 }
+
 extension CollectionTableViewCell: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_: UICollectionView, layout: UICollectionViewLayout, sizeForItemAt: IndexPath) -> CGSize {
         CGSize(width: 140, height: 200)
     }
@@ -65,7 +63,4 @@ extension CollectionTableViewCell: UICollectionViewDelegateFlowLayout {
         let itm = movies[indexPath.row]
         delegate?.tableViewCellDelegate(movie: itm)
     } 
-    
 }
-
-
