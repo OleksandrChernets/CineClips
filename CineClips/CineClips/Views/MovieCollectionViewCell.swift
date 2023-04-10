@@ -8,18 +8,16 @@
 import UIKit
 import SDWebImage
 
-class MovieCollectionViewCell: UICollectionViewCell {
+final class MovieCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Cell Identifier
     static let identifier = "GenreCollectionViewCell"
     
-    // MARK: @IBOutlet
-    
+    // MARK: @IBOutlets
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var averageLabel: UILabel!
     
     // MARK: ConfigureUI
-    
     public func configure(with model: String, with rate: Double) {
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(model)") else {
             return
@@ -28,4 +26,3 @@ class MovieCollectionViewCell: UICollectionViewCell {
         averageLabel.text = String(rate)
     }
 }
-
