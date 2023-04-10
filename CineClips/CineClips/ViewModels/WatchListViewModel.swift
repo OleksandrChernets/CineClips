@@ -8,20 +8,17 @@
 
 import RealmSwift
 
-import RealmSwift
-
-class WatchListViewModel {
-
+final class WatchListViewModel {
+    
     var movies: [MovieRealm] = []
-   
     
     // Get all movies from Realm database
     func getMovie() {
         movies = MovieDataManager.shared.getMovie()
-      }
+    }
     
     // Delete a movie from the Realm database
     func deleteMovie(movie: MovieRealm) {
         MovieDataManager.shared.deleteMovie(movie: movie)
-      }
+    }
 }
