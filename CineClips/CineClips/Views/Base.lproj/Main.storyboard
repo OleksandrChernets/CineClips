@@ -220,10 +220,14 @@
             <objects>
                 <navigationController id="TT4-Kw-7kV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="m8x-ju-dek"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a7A-4r-boV">
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="a7A-4r-boV">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zvU-zo-gOp">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="FqR-Ai-QGm" kind="relationship" relationship="rootViewController" id="Opw-oC-1Nu"/>
                     </connections>
@@ -506,9 +510,9 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vBU-cv-rab" userLabel="mainImage">
-                                            <rect key="frame" x="0.0" y="-104" width="393" height="565"/>
+                                            <rect key="frame" x="0.0" y="-98" width="393" height="559"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="565" id="Nhz-dB-ymh"/>
+                                                <constraint firstAttribute="height" constant="559" id="Nhz-dB-ymh"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

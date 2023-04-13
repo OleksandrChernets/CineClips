@@ -12,13 +12,12 @@ protocol WatchListTableViewCellDelegate: AnyObject {
     func tableViewCellDelegate(movie: MovieRealm)
 }
 
-class WatchListTableViewCell: UITableViewCell {
+final class WatchListTableViewCell: UITableViewCell {
     
     // MARK: - Cell Identifier
     static let identifier = "WatchListTableViewCell"
     
     // MARK: - Properties
-    
     @IBOutlet weak var movieLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var overview: UILabel!
@@ -26,11 +25,8 @@ class WatchListTableViewCell: UITableViewCell {
     @IBOutlet weak var movieType: UILabel!
     weak var delegate: WatchListTableViewCellDelegate?
     
-    
     // MARK: - Public methods
-    
     func configureWith(movie: MovieRealm) {
-        
         // Load movie image
         let model = movie.posterPath ?? movie.backdropPath
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(model ?? "")") else {
